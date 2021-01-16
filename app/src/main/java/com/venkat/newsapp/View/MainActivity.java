@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view, int position,List<Source> lis) {
                 if (view.getId() == R.id.source){
                     // open webview
-                    InstanceCreator.openBrowser(MainActivity.this,lis.get(position).getUrl());
+                  //  InstanceCreator.openBrowser(MainActivity.this,lis.get(position).getUrl());
                 }else{
                     //open news source
                     Intent intent = new Intent(MainActivity.this,NewsSourceActivity.class);

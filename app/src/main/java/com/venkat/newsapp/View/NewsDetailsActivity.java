@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +20,13 @@ import java.lang.reflect.Type;
 public class NewsDetailsActivity extends AppCompatActivity {
     ImageView imageView;
     TextView title,author,description,timestamp,source;
+    WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_details);
 
+        webView = findViewById(R.id.webview);
         Article article = getIntent().getParcelableExtra(Constants.ARTICLES);
         imageView = findViewById(R.id.imageView);
         title = findViewById(R.id.title);
@@ -41,7 +44,10 @@ public class NewsDetailsActivity extends AppCompatActivity {
         source.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InstanceCreator.openBrowser(NewsDetailsActivity.this,article.getUrl());
+                webView.setVisibility(View.VISIBLE);
+                webView = new WebView(NewsDetailsActivity.this);
+                webView.loadUrl(article.getUrl());
+                setContentView(webView);
             }
         });
     }

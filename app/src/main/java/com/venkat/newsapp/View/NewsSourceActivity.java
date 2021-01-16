@@ -37,6 +37,7 @@ public class NewsSourceActivity extends AppCompatActivity {
             position = getIntent().getIntExtra(Constants.POSITION,0);
 //            Toast.makeText(this, ""+position, Toast.LENGTH_SHORT).show();
         }
+        getSupportActionBar().setTitle(list.get(position).getName());
         if (position == 0){
             previousBtn.setAlpha(0.5f);
             previousBtn.setClickable(false);
@@ -59,6 +60,7 @@ public class NewsSourceActivity extends AppCompatActivity {
                 nextBtn.setClickable(false);
             }else{
                 position++;
+                getSupportActionBar().setTitle(list.get(position).getName());
                 previousBtn.setAlpha(1f);
                 previousBtn.setClickable(true);
                 fragment = new NewsFragment();
@@ -72,11 +74,12 @@ public class NewsSourceActivity extends AppCompatActivity {
         });
         previousBtn.setOnClickListener(view -> {
 
-            if (position == 1){
+            if (position == 0){
                 previousBtn.setAlpha(0.5f);
                 previousBtn.setClickable(false);
             }else{
                 position--;
+                getSupportActionBar().setTitle(list.get(position).getName());
                 nextBtn.setAlpha(1f);
                 nextBtn.setClickable(true);
                 fragment = new NewsFragment();
